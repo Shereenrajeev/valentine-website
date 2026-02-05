@@ -19,15 +19,8 @@ body {
   padding: 50px 20px;
 }
 
-h1 {
-  font-size: 42px;
-  margin-bottom: 10px;
-}
-
-h2 {
-  font-size: 28px;
-  margin-top: 30px;
-}
+h1 { font-size: 42px; }
+h2 { font-size: 28px; margin-top: 30px; }
 
 .story {
   font-size: 18px;
@@ -65,9 +58,28 @@ h2 {
   100% { transform: translateY(-120vh); opacity: 0; }
 }
 
+/* Slideshow */
+.slideshow {
+  margin-top: 60px;
+}
+
+.slideshow img {
+  width: 260px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  animation: pop 1s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
 /* Secret button */
 .secret-btn {
-  margin-top: 60px;
+  margin-top: 50px;
   padding: 16px 36px;
   font-size: 20px;
   background: #ff5c8a;
@@ -96,13 +108,8 @@ h2 {
   padding: 40px;
   border-radius: 20px;
   max-width: 500px;
-  font-size: 26px;
+  font-size: 28px;
   animation: pop 0.6s ease;
-}
-
-@keyframes pop {
-  0% { transform: scale(0); }
-  100% { transform: scale(1); }
 }
 
 .close-btn {
@@ -133,14 +140,15 @@ h2 {
 
   <div class="story">
 🌸 Our Love Story 🌸
+
 It all began on June 9, in the most unexpected place church.
 No big conversations. Just stolen glances.
 Our eyes met once… twice… three or four times enough for my heart to quietly notice him before my mind did.
-And as if fate didn’t want to wait, he texted me the very same day. (I was in his blocklist😛)
+And as if fate didn’t want to wait, he texted me the very same day. 
 I remember smiling so much.
-He asked me out the next day, and I said yes 🥰nervous, excited, curious.
+He asked me out the next day, and I said yes 🥰nervous, excited, curious.(I was in his blocklist😛)
 
-June10-Our first date was simple but filled with that unspoken tension. But it was so cute😍
+June 10- Our first date was simple but filled with that unspoken tension. But it was so cute😍
 
 On June 19, we went on a long drive windows down, conversations flowing, comfort settling in.
 By then, I felt safe with him. Like I could just be me.
@@ -164,7 +172,7 @@ I sat facing him and the moon, not knowing that moment would become a memory I�
 
 And then there was that tiny, beautiful thing 
 I’m not a girl who keeps flowers in her hair…
-but when he said he loved it, I did it just for him, sent him pictures, and felt strangely shy and happy all at once 🌼 
+but when he said he love it, I did it just for him, sent him pictures, and felt strangely shy and happy all at once 🌼 
 
 July 15, a casual food outing turned into a conversation about labels.
 We both smiled and said, “No terms… let’s go with the flow.”
@@ -203,7 +211,12 @@ Now, here we are.
 A little obsessed.
 Deeply in love.
 And dreaming of a forever together. 
+  </div>
 
+  <!-- SLIDESHOW -->
+  <div class="slideshow">
+    <h2>Our Cute Moments 📸</h2>
+    <img id="slide" src="pic1.jpeg">
   </div>
 
   <button class="secret-btn" onclick="openPopup()">💌 Open Secret Message</button>
@@ -214,30 +227,31 @@ And dreaming of a forever together.
   <div class="popup-content">
     MARRYYYYYY ME SOON ❤️❤️❤️  
     <br><br>
-    I love you sooooo much 🥹💍  
-    <br><br>
-    Forever starts with us.
+    I love you so much 🥹  
+    <br>
+    Please marry me soon 💍
     <br>
     <button class="close-btn" onclick="closePopup()">Close 💖</button>
   </div>
 </div>
 
 <script>
+/* MUSIC */
 function playMusic() {
   const music = document.getElementById("bgMusic");
   music.muted = false;
   music.play();
 }
 
+/* POPUP */
 function openPopup() {
   document.getElementById("popup").style.display = "flex";
 }
-
 function closePopup() {
   document.getElementById("popup").style.display = "none";
 }
 
-// Floating hearts
+/* FLOATING HEARTS */
 setInterval(() => {
   const heart = document.createElement("div");
   heart.className = "heart";
@@ -246,6 +260,17 @@ setInterval(() => {
   document.body.appendChild(heart);
   setTimeout(() => heart.remove(), 7000);
 }, 400);
+
+/* SLIDESHOW */
+const images = [
+  "pic1.jpeg","pic2.jpeg","pic3.jpeg","pic4.jpeg","pic5.jpeg",
+  "pic6.jpeg","pic7.jpeg","pic8.jpeg","pic9.jpeg","pic10.jpeg"
+];
+let index = 0;
+setInterval(() => {
+  index = (index + 1) % images.length;
+  document.getElementById("slide").src = images[index];
+}, 2500);
 </script>
 
 </body>
