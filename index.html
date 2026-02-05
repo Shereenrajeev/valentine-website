@@ -1,199 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For You ❤️</title>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Georgia', serif;
-      background: linear-gradient(to bottom, #fff0f5, #ffe6ea);
-      text-align: center;
-      color: #4a2c2a;
-      overflow-x: hidden;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(to bottom, #ffe6ee, #fff);
+  text-align: center;
+  overflow-x: hidden;
+}
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 50px 20px;
+}
 
-    h1 {
-      font-size: 2.8em;
-      margin-bottom: 10px;
-    }
+h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
 
-    h2 {
-      margin-top: 60px;
-      font-size: 2em;
-    }
+h2 {
+  font-size: 28px;
+  margin-top: 30px;
+}
 
-    p {
-      font-size: 1.1em;
-      line-height: 1.8;
-      margin: 25px 0;
-    }
+.story {
+  font-size: 18px;
+  line-height: 1.9;
+  margin-top: 35px;
+  color: #333;
+  white-space: pre-line;
+}
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 15px;
-      margin: 30px 0;
-    }
+/* Music button */
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  padding: 10px 18px;
+  border-radius: 25px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  cursor: pointer;
+  font-size: 14px;
+  z-index: 20;
+}
 
-    .gallery img {
-      width: 100%;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      transition: transform 0.3s ease;
-    }
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 22px;
+  animation: floatUp 7s linear infinite;
+  opacity: 0.8;
+}
 
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 0.8; }
+  100% { transform: translateY(-120vh); opacity: 0; }
+}
 
-    .final {
-      margin-top: 80px;
-      padding: 50px 20px;
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
+/* Secret button */
+.secret-btn {
+  margin-top: 60px;
+  padding: 16px 36px;
+  font-size: 20px;
+  background: #ff5c8a;
+  color: white;
+  border: none;
+  border-radius: 35px;
+  cursor: pointer;
+}
 
-    .btn {
-      margin-top: 30px;
-      padding: 15px 40px;
-      font-size: 1.2em;
-      border: none;
-      border-radius: 30px;
-      background: #ff6f91;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+/* Popup */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
 
-    .btn:hover {
-      background: #ff4f7b;
-    }
+.popup-content {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 500px;
+  font-size: 26px;
+  animation: pop 0.6s ease;
+}
 
-    .heart {
-      position: fixed;
-      bottom: -10px;
-      color: #ff6f91;
-      font-size: 20px;
-      animation: float 6s linear infinite;
-      opacity: 0.7;
-    }
+@keyframes pop {
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
 
-    @keyframes float {
-      from { transform: translateY(0); }
-      to { transform: translateY(-120vh); }
-    }
-  </style>
+.close-btn {
+  margin-top: 20px;
+  padding: 10px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 20px;
+  background: #ff5c8a;
+  color: white;
+  cursor: pointer;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- MUSIC -->
-  <audio autoplay loop>
-    <source src="love.mp3" type="audio/mpeg">
-  </audio>
+<!-- Music -->
+<audio id="bgMusic" loop muted>
+  <source src="love.mp3" type="audio/mpeg">
+</audio>
 
-  <div class="container">
+<div class="music-btn" onclick="playMusic()">🔊 Tap for music</div>
 
-    <h1>Happy Valentine’s Day ❤️</h1>
-    <p>This website exists because I love you.</p>
+<div class="container">
+  <h1>Happy Valentine’s Day ❤️</h1>
+  <h2>Our Cute Love Story</h2>
 
-    <h2>🌸 Our Love Story 🌸</h2>
+  <div class="story">
+🌸 Our Love Story 🌸
+It all began on June 9, in the most unexpected place church.
+No big conversations. Just stolen glances.
+Our eyes met once… twice… three or four times enough for my heart to quietly notice him before my mind did.
+And as if fate didn’t want to wait, he texted me the very same day. (I was in his blocklist😛)
+I remember smiling so much.
+He asked me out the next day, and I said yes 🥰nervous, excited, curious.
 
-    <p>
-      It all began on June 9, in the most unexpected place — church.
-      No big conversations, no dramatic introduction. Just stolen glances.
-      Our eyes met once… twice… three or four times — enough for my heart to quietly notice him before my mind did.
-    </p>
+June10-Our first date was simple but filled with that unspoken tension. But it was so cute😍
 
-    <div class="gallery">
-      <img src="pic1.jpeg">
-      <img src="pic2.jpeg">
-    </div>
+On June 19, we went on a long drive windows down, conversations flowing, comfort settling in.
+By then, I felt safe with him. Like I could just be me.
 
-    <p>
-      And as if fate didn’t want to wait, he texted me the very same day.
-      I remember smiling so much.
-      He asked me out the next day, and I said yes — nervous, excited, curious.
-    </p>
+The next day, June 20, he dropped me home just a 10-minute drive from chromepet Shell to my place.
+But those 10 minutes weren’t enough.
+For the first time, I missed him so much
 
-    <div class="gallery">
-      <img src="pic3.jpeg">
-      <img src="pic4.jpeg">
-    </div>
+Then came July 3 - the turning point.
+A house party. I was tipsy, barely present but he was fully there.
+Holding me, watching me, taking care of me like I was his baby
+I don’t remember everything from that day…
+but I remember how safe and loved I felt.
+That was the day my heart quietly said, “Oh… I’m falling.”
 
-    <p>
-      Our first date was simple but filled with that unspoken tension.
-      He surprised me with a cute Harry Potter sipper, and somehow that small gift made everything feel warmer, sweeter… more real.
-    </p>
+We spoke every day.
+No labels. No pressure. Just us.
 
-    <p>
-      On June 19, we went on a long drive — windows down, conversations flowing, comfort settling in.
-      By then, I felt safe with him. Like I could just be me.
-    </p>
+On July 11, we went on a cute dinner date with friends.
+I sat facing him and the moon, not knowing that moment would become a memory I’d want to keep forever.
 
-    <div class="gallery">
-      <img src="pic5.jpeg">
-      <img src="pic6.jpeg">
-    </div>
+And then there was that tiny, beautiful thing 
+I’m not a girl who keeps flowers in her hair…
+but when he said he loved it, I did it just for him, sent him pictures, and felt strangely shy and happy all at once 🌼 
 
-    <p>
-      July 3 changed everything.
-      A house party. I was tipsy, barely present — but he was fully there.
-      Holding me, watching me, taking care of me like I was something precious.
-      That was the day my heart quietly said, “Oh… I’m falling.”
-    </p>
+July 15, a casual food outing turned into a conversation about labels.
+We both smiled and said, “No terms… let’s go with the flow.”
+But our hearts already knew more than our words.
 
-    <div class="gallery">
-      <img src="pic7.jpeg">
-      <img src="pic8.jpeg">
-    </div>
+On July 17, I went to his home.
+Movies, food, laughter, hugs, kisses the soft kind of happiness.
+That day, a thought stayed with me:
+I think I’m in love.
 
-    <p>
-      From long drives, beach dates, tiny moments, secret smiles,
-      to choosing each other again and again —
-      we became us.
-    </p>
 
-    <div class="gallery">
-      <img src="pic9.jpeg">
-      <img src="pic10.jpeg">
-    </div>
+And then came August 25 — a date that changed everything.
+I gathered all my courage and asked him indirectly, shyly about us. (If you really love me I can speak to my dad)
+He was tipsy, smiled, and said,
+“We’ll talk, baby… but I love you so much.”
 
-    <div class="final">
-      <h2>Will you be my forever? 💍</h2>
-      <p>Please marry me soon 🥹❤️</p>
-      <button class="btn" onclick="yesClicked()">YES 💖</button>
-    </div>
+And on August 29, we went for a candlelight dinner, finally talking about love quietly, honestly, beautifully.
+
+September 7 brought a long drive and a beach date, where we spoke about exclusivity how hearts need clarity, not confusion.
+
+Then September 9, at his home, between kisses and laughter,
+he said the words first
+
+“I love you ❤️”
+
+And I said it back heart racing, eyes shining.
+ps: I love him more😛❤️
+
+On September 15, he came all the way to my office for lunch, right after an interview love finding its way even into busy days.
+
+
+From  dates, to cute drives in November, to long talks about the future 
+we kept choosing each other.
+
+Now, here we are.
+A little obsessed.
+Deeply in love.
+And dreaming of a forever together. 
 
   </div>
 
-  <!-- HEARTS -->
-  <script>
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 20 + 15 + "px";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }
-    setInterval(createHeart, 300);
+  <button class="secret-btn" onclick="openPopup()">💌 Open Secret Message</button>
+</div>
 
-    function yesClicked() {
-      alert("YAYYYY 💖 Forever starts now 😭❤️");
-    }
-  </script>
+<!-- Popup -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    MARRYYYYYY ME SOON ❤️❤️❤️  
+    <br><br>
+    I love you sooooo much 🥹💍  
+    <br><br>
+    Forever starts with us.
+    <br>
+    <button class="close-btn" onclick="closePopup()">Close 💖</button>
+  </div>
+</div>
+
+<script>
+function playMusic() {
+  const music = document.getElementById("bgMusic");
+  music.muted = false;
+  music.play();
+}
+
+function openPopup() {
+  document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+
+// Floating hearts
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 7000);
+}, 400);
+</script>
 
 </body>
 </html>
